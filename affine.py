@@ -1,6 +1,6 @@
 # default values
 A, B = 343, 8
-m = pow(2, 31)
+m = 128
 
 
 def encrypt(plain_text, a=A, b=B):

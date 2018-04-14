@@ -2,7 +2,7 @@
 
 import sys
 import ceasar, affine
-from word_loader import english_words as words
+from word_loader import words_dict as words
 
 
 def found_words(text):

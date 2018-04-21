@@ -7,3 +7,8 @@ def gcd(a, b):
     if b == 0:
         return a
     return gcd(b, a % b)
+
+
+# Checks if a and b are relatively prime numbers
+def relprimes(a, b):
+    return gcd(a, b) == 1

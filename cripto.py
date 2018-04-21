@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/python3.7
 
 import sys
 
@@ -7,7 +7,7 @@ def parseArg(arg):
     sublist = arg.split("=")
     sublist[1] = int(sublist[1])
     return sublist
-    
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
@@ -16,8 +16,8 @@ if __name__ == "__main__":
         kwargs = dict(parseArg(arg) for arg in sys.argv[3:])
 
         print(f"Encrypting '{message}' using '{cryptoMethodName.capitalize()} Cipher'")
-        cryptoMethod = __import__(path + cryptoMethodName)
-        
+        cryptoMethod = __import__(cryptoMethodName)
+
         encryptedText = cryptoMethod.encrypt(message, **kwargs)
         print("Encrypted text --", encryptedText)
 

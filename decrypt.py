@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/python3 
 
 import sys
 import ceasar, affine
@@ -23,6 +23,7 @@ def ceasar_attack(cipher):
 
     print("------" * 6)
     return False
+
 
 def affine_attack(cipher):
     print("------ Using Affine Cipher ------")

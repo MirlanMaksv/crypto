@@ -2,7 +2,7 @@ from sympy.crypto.crypto import encipher_shift, decipher_shift
 from sympy.crypto.crypto import encipher_affine, decipher_affine
 from sympy.crypto.crypto import encipher_vigenere, decipher_vigenere
 from sympy.crypto.crypto import encipher_hill, decipher_hill
-from symbols import symbols
+from smp.symbols import symbols
 
 def caesar(msg, key, **kwargs):
     et = encipher_shift(msg, key, symbols=symbols)

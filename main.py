@@ -7,7 +7,10 @@ if __name__ == "__main__":
     if args.crypto == "hill":
         kwargs["key"] = Matrix(eval(args.key))
 
-    et, dt = args.func(**kwargs)
+    if args.crypto == "crack":
+        args.func(**kwargs)
+    else:
+        et, dt = args.func(**kwargs)
 
-    print("encrypted text -->", et)
-    print("decrypted text -->", dt)
+        print("encrypted text -->", et)
+        print("decrypted text -->", dt)

@@ -1,4 +1,5 @@
-from crypto_sympy import caesar, affine, vigenere, hill
+from smp.crypto_sympy import caesar, affine, vigenere, hill
+from cracker import crack
 from sympy import Matrix
 import argparse
 
@@ -25,5 +26,9 @@ matrix = Matrix([[1, 2, 3], [0, 1, 4], [5, 6, 0]])
 hillparser = subparsers.add_parser("hill", help="Hill's crypto system", parents=[parent])
 hillparser.add_argument("-k", "--key", type=str, default=matrix, help="Key matrix to be used in encryption")
 hillparser.set_defaults(func=hill)
+
+cracker = subparsers.add_parser("crack", help="Cracking encyphered text.")
+cracker.add_argument("-c", "--cipher", type=str, help="Encyphered text to be decyphered by brute-force")
+cracker.set_defaults(func=crack)
 
 args = parser.parse_args()

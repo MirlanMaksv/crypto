@@ -6,7 +6,7 @@ import sys
 def load_words():
     try:
         filename = os.path.join(
-            os.getcwd(), "word_loader/words.json")
+            os.getcwd(), "words_loader/words.json")
         with open(filename, "r") as english_dictionary:
             valid_words = json.load(english_dictionary)
             return valid_words

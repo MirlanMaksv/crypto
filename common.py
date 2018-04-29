@@ -10,5 +10,14 @@ def gcd(a, b):
 
 
 # Checks if a and b are relatively prime numbers
-def relprimes(a, b):
+def arelprimes(a, b):
     return gcd(a, b) == 1
+
+
+# Generates relatively prime number of a
+def relprimes(a):
+    rprimes = []
+    for i in range(a):
+        if arelprimes(i, a):
+            rprimes.append(i)
+    return rprimes

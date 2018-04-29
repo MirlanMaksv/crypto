@@ -1,8 +1,10 @@
-from sympy.crypto.crypto import decipher_shift, decipher_affine
+from sympy.crypto.crypto import decipher_shift, decipher_affine, decipher_vigenere
+from sympy.ntheory.primetest import isprime
+from itertools import permutations as generatepermutations
 from smp.symbols import symbols
 from words_loader import words_dict as words
-from sympy.ntheory.primetest import isprime
 from common import relprimes
+
 
 intro = "---------- | {} crypto system | ----------"
 
@@ -36,9 +38,9 @@ def affine(cipher, **kwargs):
     name = intro.format("Affine")
     print(name)
 
-    length = len(symbols)
-    for a in relprimes(length):
-        for b in range(length):
+    n = len(symbols)
+    for a in relprimes(n):
+        for b in range(n):
             decrypt(decipher_affine, (a, b), cipher)
 
     print("-"*len(name), end="\n\n")
@@ -48,7 +50,11 @@ def vigenere(cipher, **kwargs):
     name = intro.format("Vigenere")
     print(name)
 
-    
+    # max key length is 4
+    for i in range(1, 4):
+        permutations = list(generatepermutations(symbols, i))
+        for p in permutations:
+            decrypt(decipher_vigenere, p, cipher)
 
     print("-"*len(name), end="\n\n")
 
@@ -56,5 +62,7 @@ def vigenere(cipher, **kwargs):
 def hill(cipher, **kwargs):
     name = intro.format("Hill's")
     print(name)
+
+    # TODO: Invertible matrix generator is needed
 
     print("-"*len(name), end="\n\n")

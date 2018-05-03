@@ -1,4 +1,4 @@
-from smp.crypto_sympy import caesar, affine, vigenere, hill
+from smp.crypto_sympy import caesar, affine, vigenere, autoclave, hill, rsa
 from cracker import crack
 from sympy import Matrix
 import argparse
@@ -22,13 +22,21 @@ vigenereparser = subparsers.add_parser("vigenere", help="Vigenere crypto system"
 vigenereparser.add_argument("-k", "--key", type=str, required=True, help="Key string to be used in encryption")
 vigenereparser.set_defaults(func=vigenere)
 
+autoclaveparser = subparsers.add_parser("autoclave", help="Autoclave crypto system", parents=[parent])
+autoclaveparser.add_argument("-k", "--key", type=str, required=True, help="Key string to be used in encryption")
+autoclaveparser.set_defaults(func=autoclave)
+
 matrix = Matrix([[1, 2, 3], [0, 1, 4], [5, 6, 0]])
 hillparser = subparsers.add_parser("hill", help="Hill's crypto system", parents=[parent])
 hillparser.add_argument("-k", "--key", type=str, default=matrix, help="Key matrix to be used in encryption")
 hillparser.set_defaults(func=hill)
 
+rsaparser = subparsers.add_parser("rsa", help="RSA crypto system", parents=[parent])
+rsaparser.add_argument("--pqe", type=int, nargs=3, required=True, help="[p, q, e] to be used in encryption")
+rsaparser.set_defaults(func=rsa)
+
 cracker = subparsers.add_parser("crack", help="Cracking encyphered text.")
-cracker.add_argument("-c", "--cipher", type=str, help="Encyphered text to be decyphered by brute-force")
+cracker.add_argument("-c", "--cipher", type=str, required=True, help="Encyphered text to be decyphered by brute-force")
 cracker.set_defaults(func=crack)
 
 args = parser.parse_args()

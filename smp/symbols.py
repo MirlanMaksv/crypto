@@ -1,3 +1,3 @@
 symbols = ""
-for i in range(32, 128):
+for i in range(32, 127):
     symbols += (chr(i))

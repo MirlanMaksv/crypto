@@ -38,6 +38,24 @@ def hill(msg, key, **kwargs):
 def rsa(msg, pqe, **kwargs):
     nd = rsa_private_key(*pqe)
     ne = rsa_public_key(*pqe)
-    et = encipher_rsa(12, ne)
-    dt = decipher_rsa(et, nd)
-    return et, dt
+    nlength = len(str(ne[0]))
+    m = []
+    for x in msg:
+        ordinal = ord(x)
+        m.append(ordinal)
+
+    cipher = []
+    for i in m:
+        enciphered = encipher_rsa(i, ne)
+        cipher.append(enciphered)
+
+    m = []
+    for c in cipher:
+        m.append(decipher_rsa(c, nd))
+
+    dt = "".join([chr(x) for x in m])
+    return cipher, dt
+
+
+def split_by_step(s, n):
+    return [int(s[i:i+n]) for i in range(0, len(s), n)]

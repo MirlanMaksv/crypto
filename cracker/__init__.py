@@ -17,10 +17,10 @@ def decrypt(fnc, key, cipher):
 
 
 def crack(**kwargs):
-    caesar(kwargs)
-    affine(kwargs)
-    vigenere(kwargs)
-    hill(kwargs)
+    caesar(**kwargs)
+    affine(**kwargs)
+    vigenere(**kwargs)
+    hill(**kwargs)
 
 
 def caesar(cipher, **kwargs):

@@ -1,4 +1,5 @@
 from smp.crypto_sympy import caesar, affine, vigenere, autoclave, hill, rsa
+from merkle_hellman import merkle_hellman 
 from cracker import crack
 from sympy import Matrix
 import argparse
@@ -34,6 +35,12 @@ hillparser.set_defaults(func=hill)
 rsaparser = subparsers.add_parser("rsa", help="RSA crypto system", parents=[parent])
 rsaparser.add_argument("--pqe", type=int, nargs=3, required=True, help="[p, q, e] to be used in encryption")
 rsaparser.set_defaults(func=rsa)
+
+mhparser = subparsers.add_parser("merkle-hellman", help="Merkle-Hellman crypto system", parents=[parent])
+mhparser.add_argument("--S", type=int, nargs="*", required=True, help="Super increasing sequence")
+mhparser.add_argument("--mod", type=int, required=True, help="m")
+mhparser.add_argument("--a", type=int, required=True, help="a")
+mhparser.set_defaults(func=merkle_hellman)
 
 cracker = subparsers.add_parser("crack", help="Cracking encyphered text.")
 cracker.add_argument("-c", "--cipher", type=str, required=True, help="Encyphered text to be decyphered by brute-force")
